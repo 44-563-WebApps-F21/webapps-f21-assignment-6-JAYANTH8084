@@ -26,6 +26,12 @@
 
 <p id="result" style="margin:10px;"></p>
 
+<div>
+
+    <img src="Yak.jpg" id="image" style="height: 200px;width: 200px;" onclick="newImage()"></img>
+
+</div>
+
 <script> 
  correct = 0;
  wrong = 0;
@@ -45,6 +51,30 @@ function processPhrase (){
     
      out.innerHTML = "Correct: " + correct + "<br>" + "Wrong: " + wrong;
     
+}
+
+let usingImage=1;
+function newImage(){
+
+switch(usingImage){
+
+    case 1: 
+        usingImage++;
+        document.getElementById("image").src = "Yak.jpg";
+        break;
+    
+    case 2:
+        usingImage++;
+        document.getElementById("image").src = "Aardvark.jpg";
+        break;
+    
+    case 3:
+        usingImage =1;
+        document.getElementById("image").src = "Numbat.jpg";
+        break;
+}
+
+
 }
 </script>
 </body>
