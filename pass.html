@@ -19,7 +19,7 @@
     <input type ="text" id="phrase" name="phrase"/>
 </div>
 <div style="margin:10px;">
-    <input type="button" style="background-color: rgb(145, 142, 103);"id="btnProcessPhrase" onclick="processPhrase()" value="Check the phrase"/>
+    <input type="button" id="btnProcessPhrase" onclick="processPhrase()" value="Check the phrase"/>
 </div>
 </form>
 
@@ -30,35 +30,44 @@
 
     <img src="Yak.jpg" id="image" style="height: 200px;width: 200px;" onclick="newImage()"></img>
 
-</div>
-<div class="container">
-    <div class="d-flex justify-content-between">
-            <a href="Yak.jpg" alt="Yak" class="img-thumbnail">
-                <img src="Yak.jpg" width="400px" height="400px">
-            </a>
+
 </div>
 
-<script> 
- correct = 0;
- wrong = 0;
+<script>
+    count=0;
 
-function processPhrase (){
-    console.log("Getting form values")
-    var secretPhrase = document.getElementById("secret_phrase").value;
-    var phrase = document.getElementById("phrase").value;
-    if(secretPhrase != null && secretPhrase.trim() != "" && phrase != null && phrase.trim() != "" && secretPhrase == phrase){
-      correct =correct + 1;
-      alert("Access Allowed");
-    }else{
-        wrong = wrong + 1;
-        alert("Access Denied");  
+    correct = 0;
+        wrong = 0;
+    function processPhrase() {
+        console.log("Checking the Guess......")
+        secret_Word = document.getElementById("form1_secret_word").value
+        guess_word = document.getElementById("form1_guess_word").value
+        confirm_guess = confirm("Is this guess word? " + guess_word)
+        result = document.getElementById("result")
+        if(count<3)
+        {
+        if (confirm_guess) {
+            if (secret_Word.localeCompare(guess_word) == 0) {
+                alert("Access Allowed.")
+                correct = correct + 1
+                result.innerHTML = "Correct guess Count: " + correct + "<br>" +"Wrong guess Count: " + wrong
+            }
+            else
+            {
+                alert("Access Denied")
+                wrong = wrong + 1
+                result.innerHTML = "Correct guess Count: " + correct + "<br>" +"Wrong guess Count: " + wrong
+                counter++;
+            }
+            
+        } else {
+            alert("Please Phrase the word again.!!!")
+        }
     }
-     var out = document.getElementById("result");
-    
-     out.innerHTML = "Correct: " + correct + "<br>" + "Wrong: " + wrong;
-    
-}
-
+    else{
+        alert("Account locked")
+    }
+    }
 let usingImage=1;
 function newImage(){
 
